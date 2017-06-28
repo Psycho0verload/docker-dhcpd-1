@@ -1,6 +1,8 @@
 FROM       alpine:latest
 MAINTAINER Paul Steinlechner <paul.steinlechner@pylonlabs.at>
 
+ENV PROJECT_HOME=/docker-dhcpd
+
 RUN set -xe \
 && apk add --update --no-progress dhcp supervisor \
 && rm -rf /var/cache/apk/*
