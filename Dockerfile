@@ -8,7 +8,8 @@ RUN apt-get update && \
     apt-get -q -y -o "DPkg::Options::=--force-confold" -o "DPkg::Options::=--force-confdef" install isc-dhcp-server man supervisor && \
     apt-get -q -y autoremove && \
     apt-get -q -y clean && \
-    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+    mkdir -p $PROJECT_HOME
 
 # Add files
 ADD util/entrypoint.sh /entrypoint.sh
