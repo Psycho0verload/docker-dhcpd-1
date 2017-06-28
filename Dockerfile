@@ -1,14 +1,9 @@
-FROM       resin/rpi-raspbian
+FROM       alpine:latest
 MAINTAINER Paul Steinlechner <paul.steinlechner@pylonlabs.at>
 
-ENV DEBIAN_FRONTEND=noninteractive PROJECT_HOME=/docker-dhcpd
-RUN apt-get update && \
-    apt-get install -q -y -o "DPkg::Options::=--force-confold" apt-utils && \
-    apt-get -q -y -o "DPkg::Options::=--force-confold" -o "DPkg::Options::=--force-confdef" dist-upgrade && \
-    apt-get -q -y -o "DPkg::Options::=--force-confold" -o "DPkg::Options::=--force-confdef" install isc-dhcp-server man supervisor && \
-    apt-get -q -y autoremove && \
-    apt-get -q -y clean && \
-    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN set -xe \
+&& apk add --update --no-progress dhcp supervisor \
+&& rm -rf /var/cache/apk/*
 
 # Add files
 ADD util/entrypoint.sh /entrypoint.sh
