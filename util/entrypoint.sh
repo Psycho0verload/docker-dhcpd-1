@@ -5,7 +5,7 @@ set -e
 _conf_new_folder="/tmp/docker-dhcpd"
 _dhcpd_conf_new="$_conf_new_folder/dhcpd.conf"
 _dhcpd_conf="$PROJECT_HOME/dhcpd.conf"
-_dhcpd_lease="$PROJECT_HOME/dhcpd.lease"
+_dhcpd_lease="$PROJECT_HOME/dhcpd.leases"
 
 # copy custom config
 [ -f $_dhcpd_conf_new ] && cp $_dhcpd_conf_new $_dhcpd_conf

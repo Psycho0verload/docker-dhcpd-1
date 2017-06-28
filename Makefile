@@ -29,5 +29,4 @@ tests:
 clean:
 	-docker rm -f \
 	dhcpd \
-	dhcpd-without-net-host \
 	dhcpd-without-config
