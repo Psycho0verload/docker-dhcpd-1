@@ -17,8 +17,8 @@ run:
 
 	sleep 15
 
-	docker run -d --name dhcpd-without-net-host \
-	-v "`pwd`/test/config":/tmp/docker-dhcpd \
+	docker run -d --name dhcpd-without-config \
+	--net=host \
 	-h dhcpd.mydomain.loc -t $(NAME)
 
 	sleep 15
@@ -29,4 +29,5 @@ tests:
 clean:
 	-docker rm -f \
 	dhcpd \
-	dhcpd-without-net-host
+	dhcpd-without-net-host \
+	dhcpd-without-config

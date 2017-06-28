@@ -1,7 +1,8 @@
 load 'test_helper/bats-support/load'
 load 'test_helper/bats-assert/load'
 
-@test "checking if container fails without --net=host option" {
-  run docker exec dhcpd-without-net-host /bin/bash -c "ls -al"
-  assert_failure
+@test "checking if container fails without provided dhcpd.conf" {
+  run docker logs dhcpd-without-config | grep '/docker-dhcpd/dhcpd.conf not found. Exiting ...' 2>&1 > /dev/null
+  run echo $?
+  assert_success
 }

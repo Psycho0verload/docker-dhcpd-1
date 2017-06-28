@@ -4,8 +4,9 @@ MAINTAINER Paul Steinlechner <paul.steinlechner@pylonlabs.at>
 ENV PROJECT_HOME=/docker-dhcpd
 
 RUN set -xe \
-&& apk add --update --no-progress dhcp supervisor \
-&& rm -rf /var/cache/apk/*
+&& apk add --update --no-progress dhcp supervisor bash perl \
+&& rm -rf /var/cache/apk/* && \
+mkdir -p $PROJECT_HOME
 
 # Add files
 ADD util/entrypoint.sh /entrypoint.sh
